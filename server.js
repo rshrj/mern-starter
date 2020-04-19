@@ -11,7 +11,7 @@ connectDB();
 app.use(express.json());
 
 // Setup API routes
-app.use('/route', require('./routes/api/route'));
+app.use('/api/icecream', require('./routes/api/icecream'));
 
 // Configure Production environment to server React build
 if (process.env.NODE_ENV === 'production') {
