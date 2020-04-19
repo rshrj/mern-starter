@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import IceCreamInput from './components/IceCreamInput';
+import IceCreams from './components/IceCreams';
+import IceCreamDetail from './components/IceCreamDetail';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='App'>
+        <IceCreamInput />
+        <Switch>
+          <Route exact path='/:id' component={IceCreamDetail} />
+          <Route exact path='/' component={IceCreams} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
