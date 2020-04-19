@@ -1,0 +1,37 @@
+{
+  "name": "mern-starter",
+  "version": "1.0.0",
+  "description": "Get started with the MERN (MongoDB, ExpressJS, ReactJS, NodeJS) stack. Includes ReduxJS for state management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefic client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rshrj/mern-starter.git"
+  },
+  "keywords": [
+    "MERN",
+    "React",
+    "Express",
+    "ReactJS",
+    "MERN",
+    "Starter"
+  ],
+  "author": "Rishi Raj <rishiraj.1012exp@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rshrj/mern-starter/issues"
+  },
+  "homepage": "https://github.com/rshrj/mern-starter#readme",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9"
+  }
+}
