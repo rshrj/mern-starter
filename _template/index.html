@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { addIceCream } from '../redux/actions/iceCream';
-
-const IceCreamFlavors = ['Chocolate', 'Vanilla', 'Butterscotch', 'Pista'];
-
-const IceCreamInput = () => {
-  const [name, setName] = useState('');
-  const [flavor, setFlavor] = useState('');
-  const [price, setPrice] = useState('');
-  const [url, setUrl] = useState('');
-
-  const dispatch = useDispatch();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(addIceCream());
-  };
-
-  return (
-    <div className='input'>
-      <form onSubmit={handleSubmit}>
-        <div className='input-group'>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="App">
+    <div class='input'>
+      <form>
+        <div class='input-group'>
           <input
             type='text'
-            className='input-text'
+            class='input-text'
             name='name'
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -33,23 +20,23 @@ const IceCreamInput = () => {
             autoFocus
           />
         </div>
-        <div className='input-group'>
+        <div class='input-group'>
           <select
             name='flavor'
             value={flavor}
             onChange={(e) => setFlavor(e.target.value)}
             placeholder='Choose a flavor'
-            className='input-select'
+            class='input-select'
           >
             {IceCreamFlavors.map((flavor) => (
               <option value={flavor}>{flavor}</option>
             ))}
           </select>
         </div>
-        <div className='input-group'>
+        <div class='input-group'>
           <input
             type='number'
-            className='input-text'
+            class='input-text'
             name='price'
             value={price}
             min='0'
@@ -58,22 +45,30 @@ const IceCreamInput = () => {
             placeholder='Enter Ice Cream Price in $'
           />
         </div>
-        <div className='input-group'>
+        <div class='input-group'>
           <input
             type='text'
-            className='input-text'
+            class='input-text'
             name='image-url'
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder='Enter URL of the image'
           />
         </div>
-        <div className='input-group'>
-          <button type='submit'>Submit</button>
-        </div>
       </form>
     </div>
-  );
-};
-
-export default IceCreamInput;
+    <div class='showcase'>
+      <div class='icecream-card'>
+        <div class='header'>
+          <h2>{iceCream.name}</h2>
+        </div>
+        <div class='picture'>
+          <img src={iceCream.url} alt='Ice Cream pic'></img>
+        </div>
+        <div class='flavor'>{iceCream.flavor}</div>
+        <div class='price'>{iceCream.price}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

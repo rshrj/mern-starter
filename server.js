@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/api/icecream', require('./routes/api/icecream'));
 
 // Configure Production environment to server React build
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV == 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {

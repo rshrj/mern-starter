@@ -21,7 +21,10 @@ router.get('/', async (req, res) => {
 // @desc    Add an icecream
 // @access  Public
 router.post('/', async (req, res) => {
-  let { name, flavor, price } = req.body;
+  console.log('asjfk');
+  console.log(req.body);
+  let { name, flavor, price, url } = req.body;
+  console.log({ name, flavor, price, url });
 
   if (!name || !flavor || !price) {
     return res.status(401).json({ err: 'Invalid Input' });
@@ -33,6 +36,10 @@ router.post('/', async (req, res) => {
       flavor,
       price
     });
+
+    if (url !== '') {
+      newIceCream.url = url;
+    }
 
     await newIceCream.save();
     return res.json({ success: true, iceCream: newIceCream });

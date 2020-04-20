@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import './iceCreamReducer';
+import iceCreamReducer from './iceCreamReducer';
 
 export default combineReducers({
   iceCream: iceCreamReducer
