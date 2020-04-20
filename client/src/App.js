@@ -17,11 +17,12 @@ function App() {
     if (!loading) {
       dispatch(loadIceCreams());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Router>
-      <div className={`loading${!loading && ' dn'}`}>
+      <div className={`loading ${!loading && 'dn'}`}>
         <div className='spinner'>
           <h1>Loading</h1>
           <div className='loader'>Loading...</div>

@@ -14,10 +14,10 @@ export const loadIceCreams = () => async (dispatch) => {
     type: ICECREAM_LOAD_START
   });
   try {
-    let { iceCreams } = await axios.get('/api/icecream');
+    let res = await axios.get('/api/icecream');
     dispatch({
       type: ICECREAM_LOAD_SUCCESS,
-      payload: iceCreams
+      payload: res.data.iceCreams
     });
   } catch (err) {
     dispatch({

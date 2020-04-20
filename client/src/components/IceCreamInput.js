@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addIceCream } from '../redux/actions/iceCream';
 
@@ -11,13 +11,19 @@ const IceCreamInput = () => {
   const [price, setPrice] = useState('');
   const [url, setUrl] = useState('');
 
+  const { errors } = useSelector((store) => store.iceCream);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(addIceCream());
+    dispatch(addIceCream(name, flavor, price, url));
   };
+
+  let errorsShow = errors.map((error) => (
+    <div className='error-box'>{error.msg}</div>
+  ));
 
   return (
     <div className='input'>
@@ -42,7 +48,9 @@ const IceCreamInput = () => {
             className='input-select'
           >
             {IceCreamFlavors.map((flavor) => (
-              <option value={flavor}>{flavor}</option>
+              <option key={flavor} value={flavor}>
+                {flavor}
+              </option>
             ))}
           </select>
         </div>
@@ -72,6 +80,7 @@ const IceCreamInput = () => {
           <button type='submit'>Submit</button>
         </div>
       </form>
+      <div className='errors'>{errors.length > 0 && errorsShow}</div>
     </div>
   );
 };

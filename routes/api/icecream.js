@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     return res.json({ iceCreams: IceCreams });
   } catch (err) {
     console.log(`Server Error ${err}`);
-    return res.status(500).json({ error: 'Server Error' });
+    return res.status(500).json({ errors: [{ msg: 'Server Error' }] });
   }
 });
 
@@ -34,7 +34,9 @@ router.post('/', validateIceCream, async (req, res) => {
     let exists = await IceCream.countDocuments({ name });
 
     if (exists) {
-      return res.status(422).json({ errors: ['Ice Cream Already Exists'] });
+      return res
+        .status(422)
+        .json({ errors: [{ msg: 'Ice Cream Already Exists' }] });
     }
 
     let newIceCream = new IceCream({
@@ -51,7 +53,7 @@ router.post('/', validateIceCream, async (req, res) => {
     return res.json({ success: true, iceCream: newIceCream });
   } catch (err) {
     console.log(`Server Error ${err}`);
-    return res.status(500).json({ errors: ['Server Error'] });
+    return res.status(500).json({ errors: [{ msg: 'Server Error' }] });
   }
 });
 
