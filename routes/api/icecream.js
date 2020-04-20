@@ -1,6 +1,8 @@
 const express = require('express');
+const { validationResult } = require('express-validator');
 
 const IceCream = require('../../models/IceCream');
+const { validateIceCream } = require('../../util/validation');
 
 const router = express.Router();
 
@@ -20,17 +22,21 @@ router.get('/', async (req, res) => {
 // @route   POST /api/icecream
 // @desc    Add an icecream
 // @access  Public
-router.post('/', async (req, res) => {
-  console.log('asjfk');
-  console.log(req.body);
-  let { name, flavor, price, url } = req.body;
-  console.log({ name, flavor, price, url });
-
-  if (!name || !flavor || !price) {
-    return res.status(401).json({ err: 'Invalid Input' });
+router.post('/', validateIceCream, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
   }
 
+  let { name, flavor, price, url } = req.body;
+
   try {
+    let exists = await IceCream.countDocuments({ name });
+
+    if (exists) {
+      return res.status(422).json({ errors: ['Ice Cream Already Exists'] });
+    }
+
     let newIceCream = new IceCream({
       name,
       flavor,
@@ -45,7 +51,7 @@ router.post('/', async (req, res) => {
     return res.json({ success: true, iceCream: newIceCream });
   } catch (err) {
     console.log(`Server Error ${err}`);
-    return res.status(500).json({ error: 'Server Error' });
+    return res.status(500).json({ errors: ['Server Error'] });
   }
 });
 

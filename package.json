@@ -30,9 +30,10 @@
   },
   "homepage": "https://github.com/rshrj/mern-starter#readme",
   "dependencies": {
-    "config": "^3.3.1",
     "client": "file:client",
+    "config": "^3.3.1",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
     "mongoose": "^5.9.9"
   },
   "devDependencies": {

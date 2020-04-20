@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const IceCreamFlavors = ['Chocolate', 'Vanilla', 'Butterscotch', 'Pista'];
+const IceCreamFlavors = require('../util/flavors');
 
 const IceCreamSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: 'true'
+    required: 'true',
+    unique: true
   },
   flavor: {
     type: String,
